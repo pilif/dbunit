@@ -19,6 +19,9 @@
     "support": {
         "issues": "https://github.com/sebastianbergmann/dbunit/issues"
     },
+    "replace": {
+        "phpunit/dbunit": "self.version"
+    },
     "require": {
         "php": "^7.1",
         "phpunit/phpunit": "^7.0 || ^8.0",
