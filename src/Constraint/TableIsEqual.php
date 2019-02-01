@@ -36,6 +36,9 @@ class TableIsEqual extends Constraint
      */
     public function __construct(ITable $value)
     {
+        if (in_array('__construct', get_class_methods(get_parent_class($this)))) {
+            parent::__construct();
+        }
         $this->value = $value;
     }
 
