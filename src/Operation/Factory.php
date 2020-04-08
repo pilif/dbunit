@@ -41,6 +41,14 @@ class Factory
         ]);
     }
 
+    public static function CLEAN_INSERT_NO_TRUNCATE()
+    {
+        return new Composite([
+            self::DELETE_RESET(),
+            self::INSERT()
+        ]);
+    }
+
     /**
      * Returns an insert database operation.
      *
@@ -84,6 +92,16 @@ class Factory
     public static function DELETE_ALL()
     {
         return new DeleteAll();
+    }
+
+    /**
+     * Returns a delete database operation.
+     *
+     * @return Operation
+     */
+    public static function DELETE_RESET()
+    {
+        return new DeleteReset();
     }
 
     /**
