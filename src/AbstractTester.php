@@ -45,7 +45,7 @@ abstract class AbstractTester implements Tester
      */
     public function __construct()
     {
-        $this->setUpOperation    = Factory::CLEAN_INSERT();
+        $this->setUpOperation    = Factory::CLEAN_INSERT_NO_TRUNCATE();
         $this->tearDownOperation = Factory::NONE();
     }
 
