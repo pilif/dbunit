@@ -23,10 +23,14 @@ class DeleteReset implements Operation
 {
     public function execute(Connection $connection, IDataSet $dataSet): void
     {
+        $sql = !$this->isMysql($connection)
+            ? 'DELETE FROM %1$s; ALTER TABLE %1$s AUTOINCREMENT=1;'
+            : 'DELETE FROM %1$s; ALTER TABLE %1$s AUTO_INCREMENT=1;';
+
         foreach ($dataSet->getReverseIterator() as $table) {
             /* @var $table ITable */
             $tname = $connection->quoteSchemaObject($table->getTableMetaData()->getTableName());
-            $query = "DELETE FROM {$tname}; ALTER TABLE {$tname} AUTO_INCREMENT=1;";
+            $query = sprintf($sql, $tname);
 
             try {
                 $this->disableForeignKeyChecksForMysql($connection);
